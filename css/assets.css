@@ -1,0 +1,23 @@
+/* Typen mit dunkler Schrift (helle Hintergründe) */
+.type-electric   { background-color: #F8D030; color: rgba(0, 0, 0, 0.75); }
+.type-fairy      { background-color: #EE99AC; color: rgba(0, 0, 0, 0.75); }
+.type-ice        { background-color: #98D8D8; color: rgba(0, 0, 0, 0.75); }
+.type-bug        { background-color: #A8B820; color: rgba(0, 0, 0, 0.75); }
+.type-normal     { background-color: #A8A878; color: rgba(0, 0, 0, 0.75); } /* optional, je nach Kontrast */
+.type-steel      { background-color: #B8B8D0; color: rgba(0, 0, 0, 0.75); } /* optional */
+
+/* Alle anderen Typen behalten weiße Schrift */
+.type-fire       { background-color: #F08030; }
+.type-water      { background-color: #6890F0; }
+.type-grass      { background-color: #78C850; }
+.type-fighting   { background-color: #C03028; }
+.type-poison     { background-color: #A040A0; }
+.type-ground     { background-color: #E0C068; }
+.type-flying     { background-color: #A890F0; }
+.type-psychic    { background-color: #F85888; }
+.type-rock       { background-color: #B8A038; }
+.type-ghost      { background-color: #705898; }
+.type-dragon     { background-color: #7038F8; }
+.type-dark       { background-color: #705848; }
+.type-unknown    { background-color: #707070; }
+.type-shadow     { background-color: #404040; }
