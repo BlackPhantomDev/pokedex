@@ -5,6 +5,9 @@ header {
     box-sizing: border-box;
     box-shadow: 20px 0 50px rgba(0,0,0,0.1);
     background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 main {
@@ -16,6 +19,7 @@ main {
     margin: 50px 0;
     padding: 0 50px;
     min-height: calc(100vh - 240px);
+    gap: 100px;
 }
 
 
@@ -25,9 +29,6 @@ main {
     height: 120px;
     display: flex;
     align-items: center;
-}
-
-.navbar {
     justify-content: space-between;
     padding: 0 20px;
 }
@@ -78,6 +79,14 @@ main {
     flex-wrap: wrap;
     gap: 32px;
     max-width: 1920px;
+}
+
+#load-more-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    
 }
 
 footer {
