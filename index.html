@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pokedex</title>
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./css/card.css">
         <link rel="stylesheet" href="./css/fonts.css">
         <link rel="stylesheet" href="./css/assets.css">
         <link rel="stylesheet" href="./css/standard.css">
@@ -12,17 +13,55 @@
     </head>
     <body onload="init()">
         <header>
-            <nav>
-                <a href="#">Pokedex Logo</a>
+            <nav class="navbar">
+                <a href="#" class="logo-link">
+                    <img src="./assets/img/logo.png" alt="Logo">
+                </a>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="z.B. Pikachu...">
+                    <button class="search-button">Suchen</button>
+                </div>
             </nav>
         </header>
 
         <main>
 
+            <div id="pokemon-cards">
+                <div class="pokemon-card">
+                    <div class="card-header">
+                        Pikachu
+                    </div>
+                    <div class="card-body">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/200x200?text=Pikachu" alt="Pikachu">
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <div class="stat-value">55</div>
+                                <div class="stat-label">Angriff</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">40</div>
+                                <div class="stat-label">Verteidigung</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">90</div>
+                                <div class="stat-label">Geschwindigkeit</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        Typ: Elektro | HP: 35
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <footer>
-
+            <p>© - PokéDex by Mischa Siegrist - 2026</p>
+            <p>&nbsp;</p>
+            <p>Pokeapi created by <a href="https://github.com/phalt"> Paul Hallett</a> and other <a href="https://github.com/PokeAPI/pokeapi/graphs/contributors">PokéAPI contributors</a> around the world. Pokémon and Pokémon character names are trademarks of Nintendo.</p>
         </footer>
 
 
