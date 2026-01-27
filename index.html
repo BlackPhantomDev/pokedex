@@ -18,20 +18,24 @@
                     <img src="./assets/img/logo.png" alt="Logo">
                 </a>
                 <div class="search-container">
-                    <input type="text" class="search-input" placeholder="z.B. Pikachu...">
-                    <button class="search-button">Suchen</button>
+                    <input type="text" class="search-input" id="search-input" placeholder="z.B. Pikachu...">
+                    <button class="search-button" onclick="searchPokemon()">Suchen</button>
                 </div>
             </nav>
         </header>
 
         <main>
 
-            <div id="pokemon-cards">
+            <section id="pokemon-cards">
                 
-            </div>
-            <button onclick="loadMoreCards(10)">10 weitere Laden</button>
-            <button onclick="loadMoreCards(30)">30 weitere Laden</button>
-            <button onclick="loadMoreCards(50)">50 weitere Laden</button>
+            </section>
+
+            <section id="load-more-btns">
+                <button onclick="loadMoreCards(10)">10 weitere Laden</button>
+                <button onclick="loadMoreCards(30)">30 weitere Laden</button>
+                <button onclick="loadMoreCards(50)">50 weitere Laden</button>
+            </section>
+
         </main>
 
         <footer>
@@ -48,6 +52,6 @@
 
     <script src="./script.js"></script>
     <script src="./js/templates.js"></script>
-    <script src="./js/pokemons.js"></script>
+    <script src="./js/fetchPokemons.js"></script>
 </html>
     
