@@ -1,4 +1,4 @@
-function getPokemonCardTemplate(name, stats, types, weight, img, headerColor) {
+function getPokemonCardTemplate(id, name, stats, types, img, headerColor) {
     return `
         <div class="pokemon-card">
             <div class="card-header ${headerColor}" id="pokemon-card-name">
@@ -6,7 +6,7 @@ function getPokemonCardTemplate(name, stats, types, weight, img, headerColor) {
             </div>
             <div class="card-body">
                 <div class="card-image">
-                    <img id="pokemon-card-img" src="${img}" alt="Pokemon">
+                    <img id="pokemon-card-img" src="${img}" alt="Pokemon" onclick="alert(${id})">
                 </div>
                 <div class="card-stats">
                     <div class="stat">
