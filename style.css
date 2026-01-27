@@ -8,19 +8,23 @@ header {
 }
 
 main {
-    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 50px 0;
     padding: 0 50px;
-    height: calc(100vh - 240px);
+    min-height: calc(100vh - 240px);
 }
 
 
-footer, .navbar {
+.navbar {
     width: 100%;
     max-width: 1440px;
     height: 120px;
     display: flex;
     align-items: center;
-    
 }
 
 .navbar {
@@ -66,11 +70,29 @@ footer, .navbar {
     background-color: #0056b3;
 }
 
+#pokemon-cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1920px;
+}
+
 footer {
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
     text-align: center;
-        box-sizing: border-box;
+    box-sizing: border-box;
     box-shadow: 20px 0 50px rgba(0,0,0,0.1);
     background-color: #f8f9fa;
+}
+
+#footer-content {
+    max-width: 1440px;
 }
