@@ -1,29 +1,34 @@
 const dex = document.getElementById("pokemon-cards");
 
 let limit = 10;
+let globalStartIndex = 0;
 
 async function init() {
     await fetchAllSourcesFromRemote(limit);
-    await renderCards(limit);
+    await renderCards(globalStartIndex, limit);
 }
     
-async function renderCards(amount) {
-    for (let index = 0; index < amount; index++) {
+async function renderCards(indexStart, amount) {
+    for (let index = indexStart; index < amount; index++) {
         let allPokemons = pokemons.results[index];
         let pokemon = await fetchSinglePokemonFromRemote(allPokemons.url);
         let typesString = "";
         for (let i = 0; i < pokemon.types.length; i++) {
             typesString = generateTypeString(i, pokemon, typesString);
         }
-        dex.innerHTML += getPokemonCardTemplate(
-            pokemon.name.toUpperCase(),
-            pokemon.stats,
-            typesString,
-            pokemon.weight,
-            pokemon.sprites["other"]["official-artwork"]["front_default"],
-            typeColor(pokemon)
-        );
+        setCardInfos(pokemon, typesString);
     }
+}
+
+function setCardInfos(pokemon, typesString) {
+    dex.innerHTML += getPokemonCardTemplate(
+        pokemon.name.toUpperCase(),
+        pokemon.stats,
+        typesString,
+        pokemon.weight,
+        pokemon.sprites["other"]["official-artwork"]["front_default"],
+        typeColor(pokemon)
+    );
 }
 
 function generateTypeString(i, pokemon, typesString) {
@@ -60,4 +65,12 @@ function typeColor(pokemon) {
         case "shadow":     return "type-shadow";
         default:           return "type-unknown";
     }
+}
+
+
+async function loadMoreCards(amount) {
+    limit += amount;
+    globalStartIndex += 10;
+    await fetchAllSourcesFromRemote(limit);
+    await renderCards(globalStartIndex, limit);
 }
