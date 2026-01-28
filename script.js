@@ -1,5 +1,6 @@
 const dex = document.getElementById("pokemon-cards");
 let searchBar = document.getElementById("search-input");
+let searchCategory = document.getElementById("search-category");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -75,8 +76,15 @@ async function loadMoreCards(amount) {
     renderCards(globalStartIndex, amount);
 }
 
-function searchPokemon() {
+function searchPokemon() {     
     if (searchBar.value) {
-        
+        switch (searchCategory.value) {
+            case "name":
+                break;
+            case "type":
+                break;
+            default:
+                break;
+        }
     }    
 }
