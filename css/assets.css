@@ -21,3 +21,14 @@
 .type-dark       { background-color: #705848; }
 .type-unknown    { background-color: #707070; }
 .type-shadow     { background-color: #404040; }
+
+
+.primary-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
