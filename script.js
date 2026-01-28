@@ -1,17 +1,20 @@
 const dex = document.getElementById("pokemon-cards");
+let searchBar = document.getElementById("search-input");
 
-let limit = 10;
+let fetchLimit = 1000;
+let renderLimit = 10;
 let globalStartIndex = 0;
 
 async function init() {
-    await fetchAllSourcesFromRemote(limit);
-    await renderCards(globalStartIndex, limit);
+    await fetchAllSourcesFromRemote(fetchLimit);
+    await renderCards(globalStartIndex, renderLimit);
 }
     
-async function renderCards(indexStart, amount) {
-    for (let index = indexStart; index < amount; index++) {
-        let allPokemons = pokemons.results[index];
-        let pokemon = await fetchSinglePokemonFromRemote(allPokemons.url);
+async function renderCards(startIndex, count) {
+    const endIndex = startIndex + count;
+    for (let index = startIndex; index < endIndex; index++) {
+        const allPokemons = pokemons.results[index];
+        const pokemon = await fetchSinglePokemonFromRemote(allPokemons.url);
         let typesString = "";
         for (let i = 0; i < pokemon.types.length; i++) {
             typesString = generateTypeString(i, pokemon, typesString);
@@ -22,10 +25,10 @@ async function renderCards(indexStart, amount) {
 
 function setCardInfos(pokemon, typesString) {
     dex.innerHTML += getPokemonCardTemplate(
+        pokemon.id,
         pokemon.name.toUpperCase(),
         pokemon.stats,
         typesString,
-        pokemon.weight,
         pokemon.sprites["other"]["official-artwork"]["front_default"],
         typeColor(pokemon)
     );
@@ -67,10 +70,13 @@ function typeColor(pokemon) {
     }
 }
 
-
 async function loadMoreCards(amount) {
-    limit += amount;
-    globalStartIndex += 10;
-    await fetchAllSourcesFromRemote(limit);
-    await renderCards(globalStartIndex, limit);
+    globalStartIndex = globalStartIndex + amount;
+    renderCards(globalStartIndex, amount);
+}
+
+function searchPokemon() {
+    if (searchBar.value) {
+        
+    }    
 }
