@@ -71,9 +71,9 @@ function typeColor(pokemon) {
     }
 }
 
-async function loadMoreCards(amount) {
-    globalStartIndex = globalStartIndex + amount;
-    renderCards(globalStartIndex, amount);
+async function loadMoreCards() {
+    globalStartIndex = globalStartIndex + 10;
+    renderCards(globalStartIndex, 10);
 }
 
 function searchPokemon() {     
