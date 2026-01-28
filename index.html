@@ -17,23 +17,32 @@
                 <a href="#" class="logo-link">
                     <img src="./assets/img/logo.png" alt="Logo">
                 </a>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="search-input" placeholder="z.B. Pikachu...">
-                    <button class="search-button" onclick="searchPokemon()">Suchen</button>
-                </div>
             </nav>
         </header>
 
         <main>
+            <section class="search-section">
+                <h4>PokéDex durchsuchen:</h4>
+                <div class="search-container">
+                    <select name="categroy" id="search-category">
+                        <option value="name">Name</option>
+                        <option value="type">Type</option>
+                    </select>
+                    <div id="bar">
+                        <input type="text" class="search-input" id="search-input" placeholder="z.B. Pikachu...">
+                        <button class="search-button primary-button" onclick="searchPokemon()">Suchen</button>
+                    </div>
+                </div>
+            </section>
 
             <section id="pokemon-cards">
                 
             </section>
 
             <section id="load-more-btns">
-                <button onclick="loadMoreCards(10)">10 weitere Laden</button>
-                <button onclick="loadMoreCards(30)">30 weitere Laden</button>
-                <button onclick="loadMoreCards(50)">50 weitere Laden</button>
+                <button onclick="loadMoreCards(10)" class="primary-button">10 weitere Laden</button>
+                <button onclick="loadMoreCards(30)" class="primary-button">30 weitere Laden</button>
+                <button onclick="loadMoreCards(50)" class="primary-button">50 weitere Laden</button>
             </section>
 
         </main>
