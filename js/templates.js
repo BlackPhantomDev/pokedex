@@ -6,7 +6,7 @@ function getPokemonCardTemplate(id, name, stats, types, img, headerColor) {
             </div>
             <div class="card-body">
                 <div class="card-image">
-                    <img id="pokemon-card-img" src="${img}" alt="Pokemon" onclick="alert(${id})">
+                    <img id="pokemon-card-img" src="${img}" alt="Pokemon" onclick="openPokemonCard(${id})">
                 </div>
                 <div class="card-stats">
                     <div class="stat">

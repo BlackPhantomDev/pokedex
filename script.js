@@ -88,3 +88,7 @@ function searchPokemon() {
         }
     }    
 }
+
+function openPokemonCard(id) {
+    alert(id);
+}
