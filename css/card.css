@@ -6,6 +6,13 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background-color: white;
     font-family: Arial, sans-serif;
+    cursor: pointer;
+    transition: .25s all ease-out;
+}
+
+.pokemon-card:hover {
+    transform: scale(105%);
+    transition: .15s all ease-in;
 }
 
 .card-header {
@@ -27,8 +34,6 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    -webkit-filter: drop-shadow(5px 5px 5px #2222221e);
-    filter: drop-shadow(5px 5px 5px #2222221e);
 }
 
 .card-image img {
