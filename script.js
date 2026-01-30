@@ -1,6 +1,8 @@
 const dex = document.getElementById("pokemon-cards");
-let searchBar = document.getElementById("search-input");
-let searchCategory = document.getElementById("search-category");
+const searchBar = document.getElementById("search-input");
+const searchCategory = document.getElementById("search-category");
+const dialogSection = document.getElementById("dialog-section");
+const pokemonCardDialog = document.getElementById("pokemon-card-full");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -25,7 +27,7 @@ async function renderCards(startIndex, count) {
 }
 
 function setCardInfos(pokemon, typesString) {
-    dex.innerHTML += getPokemonCardTemplate(
+    dex.innerHTML += getSmallPokemonCardTemplate(
         pokemon.id,
         pokemon.name.toUpperCase(),
         pokemon.stats,
@@ -90,5 +92,10 @@ function searchPokemon() {
 }
 
 function openPokemonCard(id) {
-    alert(id);
+    dialogSection.classList.add("opened");
+    pokemonCardDialog.innerHTML = "";
+    pokemonCardDialog.innerHTML = getBigPokemonCardTemplate(1, "Name", "./assets/img/logo.png");
+    pokemonCardDialog.showModal();
+
+
 }
