@@ -1,4 +1,4 @@
-header {
+#main-header {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -101,6 +101,19 @@ main {
 #load-more-btns button {
     padding: 8px 12px;
     cursor: pointer;
+}
+
+#dialog-section {
+    display: none;
+}
+
+#dialog-section.opened {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 #main-footer {
