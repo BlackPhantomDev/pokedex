@@ -103,7 +103,7 @@ main {
     cursor: pointer;
 }
 
-footer {
+#main-footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
