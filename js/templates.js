@@ -55,7 +55,7 @@ function getBigPokemonCardTemplate(pokemon) {
     return `
         <article class="inner-dialog">
             <header id="dialog-header">
-                <h2 id="dialog-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                <h2 id="dialog-title">#${("0000" + pokemon.id).slice(-4)} ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
                 <button onclick="closePokemonCardDialog()" aria-label="Dialog schliessen" href="#" class="close-btn navigation-btn" type="button" tabindex="0">
                     <img src="./assets/icons/close.png" alt="Schliessen Button"/>
                 </button>
@@ -73,20 +73,24 @@ function getBigPokemonCardTemplate(pokemon) {
                             <span onclick="switchStat(2)">Evochain</span>
                         </div>
                         <div id="stats-content">
-                            <div class="stats" id="main-stats">
-                                <p><span>Height: </span><span>${pokemon.height}</span></p>
-                                <p><span>Weight: </span><span>${pokemon.weight}</span></p>
-                                <p><span>Base-Experience: </span><span>${pokemon.base_experience}</span></p>
-                                <p><span>Abilities: </span><span>${getAllPokemonAbilities(pokemon.abilities).join(", ")}</span></p>
-
+                            <div class="stats-table" id="main-stats">
+                            <table>
+                                <tr><th>Height</th><td>${pokemon.height}</td></tr>
+                                <tr><th>Weight</th><td>${pokemon.weight}</td></tr>
+                                <tr><th>Base‑Experience</th><td>${pokemon.base_experience} pts.</td></tr>
+                                <tr><th>Abilities</th><td>${getAllPokemonAbilities(pokemon.abilities).join(", ")}</td></tr>
+                            </table>
                             </div>
-                            <div class="stats" id="battle-stats">
-                                <p><span>${pokemon.stats[0]["stat"]["name"].toUpperCase()}: </span><span>${pokemon.stats[0]["base_stat"]}</span></p>
-                                <p><span>${capWords(pokemon.stats[1]["stat"]["name"])}: </span><span>${pokemon.stats[1]["base_stat"]}</span></p>
-                                <p><span>${capWords(pokemon.stats[2]["stat"]["name"])}: </span><span>${pokemon.stats[2]["base_stat"]}</span></p>
-                                <p><span>${capWords(pokemon.stats[3]["stat"]["name"])}: </span><span>${pokemon.stats[3]["base_stat"]}</span></p>
-                                <p><span>${capWords(pokemon.stats[4]["stat"]["name"])}: </span><span>${pokemon.stats[4]["base_stat"]}</span></p>
-                                <p><span>${capWords(pokemon.stats[5]["stat"]["name"])}: </span><span>${pokemon.stats[5]["base_stat"]}</span></p>
+
+                            <div class="stats-table" id="battle-stats">
+                            <table>
+                                <tr><th>${pokemon.stats[0].stat.name.toUpperCase()}</th><td>${pokemon.stats[0].base_stat} pts.</td></tr>
+                                <tr><th>${capWords(pokemon.stats[1].stat.name)}</th><td>${pokemon.stats[1].base_stat} pts.</td></tr>
+                                <tr><th>${capWords(pokemon.stats[2].stat.name)}</th><td>${pokemon.stats[2].base_stat} pts.</td></tr>
+                                <tr><th>${capWords(pokemon.stats[3].stat.name)}</th><td>${pokemon.stats[3].base_stat} pts.</td></tr>
+                                <tr><th>${capWords(pokemon.stats[4].stat.name)}</th><td>${pokemon.stats[4].base_stat} pts.</td></tr>
+                                <tr><th>${capWords(pokemon.stats[5].stat.name)}</th><td>${pokemon.stats[5].base_stat} pts.</td></tr>
+                            </table>
                             </div>
                             <div id="evo-chain">
                             
