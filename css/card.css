@@ -66,12 +66,10 @@
 .stat-value {
     font-size: 1.3em;
     font-weight: bold;
-    color: #333;
 }
 
 .stat-label {
     font-size: 0.8em;
-    color: #666;
 }
 
 .card-footer {

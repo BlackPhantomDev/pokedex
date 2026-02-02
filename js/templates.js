@@ -68,9 +68,9 @@ function getBigPokemonCardTemplate(pokemon) {
                         alt="Pokemon: ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
                     <figcaption id="stats-container">
                         <div id="stats-menue">
-                            <span onclick="switchStat(1)">Main</span>
-                            <span onclick="switchStat(2)">Battle</span>
-                            <span onclick="switchStat(3)">Evochain</span>
+                            <span onclick="switchStat(0)">Main</span>
+                            <span onclick="switchStat(1)">Battle</span>
+                            <span onclick="switchStat(2)">Evochain</span>
                         </div>
                         <div id="stats-content">
                             <div class="stats" id="main-stats">
@@ -88,7 +88,7 @@ function getBigPokemonCardTemplate(pokemon) {
                                 <p><span>${capWords(pokemon.stats[4]["stat"]["name"])}: </span><span>${pokemon.stats[4]["base_stat"]}</span></p>
                                 <p><span>${capWords(pokemon.stats[5]["stat"]["name"])}: </span><span>${pokemon.stats[5]["base_stat"]}</span></p>
                             </div>
-                            <div id="evochain">
+                            <div id="evo-chain">
                             
                             </div>
                         </div>
