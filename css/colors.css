@@ -1,0 +1,23 @@
+/* Typen mit dunkler Schrift (helle Hintergründe) */
+.type-electric   { background-color: #F8D030; color: rgba(0, 0, 0, 0.75); }
+.type-fairy      { background-color: #EE99AC; color: rgba(0, 0, 0, 0.75); }
+.type-ice        { background-color: #98D8D8; color: rgba(0, 0, 0, 0.75); }
+.type-bug        { background-color: #A8B820; color: rgba(0, 0, 0, 0.75); }
+.type-normal     { background-color: #A8A878; color: rgba(0, 0, 0, 0.75); }
+.type-steel      { background-color: #B8B8D0; color: rgba(0, 0, 0, 0.75); }
+
+/* Alle anderen Typen behalten weiße Schrift */
+.type-fire       { background-color: #F08030; color: white;}
+.type-water      { background-color: #6890F0; color: white;}
+.type-grass      { background-color: #78C850; color: white;}
+.type-fighting   { background-color: #C03028; color: white;}
+.type-poison     { background-color: #A040A0; color: white;}
+.type-ground     { background-color: #E0C068; color: white;}
+.type-flying     { background-color: #A890F0; color: white;}
+.type-psychic    { background-color: #F85888; color: white;}
+.type-rock       { background-color: #B8A038; color: white;}
+.type-ghost      { background-color: #705898; color: white;}
+.type-dragon     { background-color: #7038F8; color: white;}
+.type-dark       { background-color: #705848; color: white;}
+.type-unknown    { background-color: #707070; color: white;}
+.type-shadow     { background-color: #404040; color: white;}
