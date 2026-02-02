@@ -26,7 +26,7 @@
     background-color: var(--primary-color);
 
     width: 500px;
-    min-height: 600px;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -101,13 +101,26 @@
     display: flex;
     justify-content: space-between;
     background-color: rgb(0, 82, 82);
-    padding: 8px 0;
 }
 
 #stats-menue span {
-    width: 33%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
+    color: white;
+    padding:  8px 0;
+}
+
+#stats-menue span a {
+    color: white;
+}
+
+#stats-menue span:hover {
+    background-color: rgb(0, 116, 116);
+}
+
+#stats-menue span.active {
+    background-color: rgb(0, 150, 150);
 }
 
 .stats {
@@ -122,7 +135,7 @@
     font-size: 18px;
 }
 
-#battle-stats, #evochain {
+#main-stats, #battle-stats, #evochain {
     display: none;
 }
 
