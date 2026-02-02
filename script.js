@@ -2,22 +2,38 @@ const dex = document.getElementById("pokemon-cards");
 const searchBar = document.getElementById("search-input");
 const searchCategory = document.getElementById("search-category");
 const dialogSection = document.getElementById("dialog-section");
-const pokemonCardDialog = document.getElementById("pokemon-card-full");
+const pokemonCardDialog = document.getElementById("pokemon-card-complete");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
 let globalStartIndex = 0;
 
+const API_URL = "https://pokeapi.co/api/v2/pokemon/";
+
+window.addEventListener('keydown', function(event) {
+  if (pokemonCardDialog.open) {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+      closePokemonCardDialog();
+    }
+  }
+}
+);
+dialogSection.addEventListener("click", () => closePokemonCardDialog());
+pokemonCardDialog.addEventListener('click', function(event) {
+    if (event.target.closest('.inner-dialog')) event.stopPropagation();
+});
+
 async function init() {
     await fetchAllSourcesFromRemote(fetchLimit);
     await renderCards(globalStartIndex, renderLimit);
+    openPokemonCardDialog(1);
 }
     
 async function renderCards(startIndex, count) {
     const endIndex = startIndex + count;
     for (let index = startIndex; index < endIndex; index++) {
-        const allPokemons = pokemons.results[index];
-        const pokemon = await fetchSinglePokemonFromRemote(allPokemons.url);
+        let currentPokemonInfos = pokemons.results[index];
+        const pokemon = await fetchSinglePokemonFromRemote(currentPokemonInfos.url);
         let typesString = "";
         for (let i = 0; i < pokemon.types.length; i++) {
             typesString = generateTypeString(i, pokemon, typesString);
@@ -91,11 +107,41 @@ function searchPokemon() {
     }    
 }
 
-function openPokemonCard(id) {
-    dialogSection.classList.add("opened");
+async function openPokemonCardDialog(id) {
+    const pokemon = await fetchSinglePokemonFromRemote(API_URL+id);
+    console.log(pokemon);
+    
+    dialogSection.style.display = 'block';
+    pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
-    pokemonCardDialog.innerHTML = getBigPokemonCardTemplate(1, "Name", "./assets/img/logo.png");
+    pokemonCardDialog.innerHTML = getBigPokemonCardTemplate(pokemon);
     pokemonCardDialog.showModal();
 
 
+}
+
+function closePokemonCardDialog() {
+    dialogSection.style.display = 'none';
+    pokemonCardDialog.classList.remove("opened");
+    pokemonCardDialog.innerHTML = "";
+    pokemonCardDialog.close();
+}
+
+function capWords(str) {
+    return str
+        .split(/[-\s]/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('-');
+}
+
+function getAllPokemonAbilities(abilities) {
+    let allAbilities = [];
+    for (let i = 0; i < abilities.length; i++) {
+        allAbilities[i] = capWords(abilities[i]["ability"]["name"].toString());
+    }
+    return allAbilities;
+}
+
+function switchStat(index) {
+    return;
 }
