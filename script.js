@@ -109,15 +109,12 @@ function searchPokemon() {
 
 async function openPokemonCardDialog(id) {
     const pokemon = await fetchSinglePokemonFromRemote(API_URL+id);
-    console.log(pokemon);
-    
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
     pokemonCardDialog.innerHTML = getBigPokemonCardTemplate(pokemon);
     pokemonCardDialog.showModal();
-
-
+    switchStat(0);
 }
 
 function closePokemonCardDialog() {
@@ -143,5 +140,35 @@ function getAllPokemonAbilities(abilities) {
 }
 
 function switchStat(index) {
-    return;
+    let statsMenu = resetStatsMenue();
+    const spans = statsMenu.querySelectorAll("span");
+    if (spans[index]) {
+        spans[index].classList.add('active');
+    }
+    showStat(index);
+}
+
+function resetStatsMenue() {
+    const statsMenu = document.getElementById("stats-menue");
+    statsMenu.querySelectorAll("span").forEach(span => {
+        span.classList.remove('active');
+    });
+    return statsMenu;
+}
+
+function showStat(statIndex) {
+    const statsContent = document.getElementById('stats-content');
+    const sections = statsContent.querySelectorAll('#main-stats, #battle-stats, #evo-chain');
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    let target;
+    switch (statIndex) {
+        case 0:  target = statsContent.querySelector('#main-stats');   break;
+        case 1:  target = statsContent.querySelector('#battle-stats'); break;
+        case 2:  target = statsContent.querySelector('#evo-chain');    break;
+        default: target = statsContent.querySelector('#main-stats');   break;
+    }
+    if (target) {
+        target.classList.add('active');
+    }
 }
