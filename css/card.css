@@ -82,20 +82,3 @@
     font-size: 0.9em;
     color: #555;
 }
-
-
-#pokemon-card-complete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#dialog-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}

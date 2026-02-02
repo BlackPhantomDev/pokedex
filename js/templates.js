@@ -1,6 +1,6 @@
 function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
     return `
-        <article class="pokemon-card" aria-labelledby="pokemon-card-name-${id}" role="article" onclick="openPokemonCard(${id})">
+        <article class="pokemon-card" aria-labelledby="pokemon-card-name-${id}" role="article" onclick="openPokemonCardDialog(${id})">
             <header class="card-header ${headerColor}" id="pokemon-card-name-${id}">
                 ${name}
             </header>
@@ -51,26 +51,50 @@ function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
     `;
 }
 
-function getBigPokemonCardTemplate(id, name, img) {
+function getBigPokemonCardTemplate(pokemon) {
     return `
-        <div class="inner-dialog">
+        <article class="inner-dialog">
             <header id="dialog-header">
-                <h2 id="dialog-title">${name}</h2>
-                <button onclick="closeDialog()" aria-label="Dialog schliessen" href="#" class="close-btn navigation-btn" type="button" tabindex="0">
-                    <img src="./assets/icons/close-icon.png" alt="Schliessen Button"/>
+                <h2 id="dialog-title">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                <button onclick="closePokemonCardDialog()" aria-label="Dialog schliessen" href="#" class="close-btn navigation-btn" type="button" tabindex="0">
+                    <img src="./assets/icons/close.png" alt="Schliessen Button"/>
                 </button>
             </header>
 
             <section id="dialog-content">
                 <figure>
-                    <img id="preview"
-                        src="${img}"
-                        alt="Pokemon: ${name}">
-                    <figcaption>
-                        Stats:
+                    <img id="pokemon-preview"
+                        src="${pokemon.sprites["other"]["official-artwork"]["front_default"]}"
+                        alt="Pokemon: ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
+                    <figcaption id="stats-container">
+                        <div id="stats-menue">
+                            <span onclick="switchStat(1)">Main</span>
+                            <span onclick="switchStat(2)">Battle</span>
+                            <span onclick="switchStat(3)">Evochain</span>
+                        </div>
+                        <div id="stats-content">
+                            <div class="stats" id="main-stats">
+                                <p><span>Height: </span><span>${pokemon.height}</span></p>
+                                <p><span>Weight: </span><span>${pokemon.weight}</span></p>
+                                <p><span>Base-Experience: </span><span>${pokemon.base_experience}</span></p>
+                                <p><span>Abilities: </span><span>${getAllPokemonAbilities(pokemon.abilities).join(", ")}</span></p>
+
+                            </div>
+                            <div class="stats" id="battle-stats">
+                                <p><span>${pokemon.stats[0]["stat"]["name"].toUpperCase()}: </span><span>${pokemon.stats[0]["base_stat"]}</span></p>
+                                <p><span>${capWords(pokemon.stats[1]["stat"]["name"])}: </span><span>${pokemon.stats[1]["base_stat"]}</span></p>
+                                <p><span>${capWords(pokemon.stats[2]["stat"]["name"])}: </span><span>${pokemon.stats[2]["base_stat"]}</span></p>
+                                <p><span>${capWords(pokemon.stats[3]["stat"]["name"])}: </span><span>${pokemon.stats[3]["base_stat"]}</span></p>
+                                <p><span>${capWords(pokemon.stats[4]["stat"]["name"])}: </span><span>${pokemon.stats[4]["base_stat"]}</span></p>
+                                <p><span>${capWords(pokemon.stats[5]["stat"]["name"])}: </span><span>${pokemon.stats[5]["base_stat"]}</span></p>
+                            </div>
+                            <div id="evochain">
+                            
+                            </div>
+                        </div>
                     </figcaption>
                 </figure>
             </section>
-        </div>
+        </article>
     `;
 }
