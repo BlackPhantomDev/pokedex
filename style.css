@@ -81,6 +81,18 @@ main {
     background-color: #0056b3;
 }
 
+.error-card {
+    background: #fff;
+    text-align: center;
+}
+.error-card h2 {
+    color: #d32f2f;
+    margin-bottom: 0.5rem;
+}
+.error-card p {
+    margin-bottom: 1.5rem;
+}
+
 #pokemon-cards {
     display: flex;
     flex-direction: row;

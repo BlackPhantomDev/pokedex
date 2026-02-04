@@ -102,3 +102,13 @@ function getBigPokemonCardTemplate(pokemon) {
         </article>
     `;
 }
+
+function getErrorMessageTemplate(error) {
+    return `
+        <div class="error-card" id="errorCard">
+            <h2>Fehler beim Laden</h2>
+            <p>Die Daten von der PokéAPI konnten nicht abgerufen werden.</p>
+            <button onclick="init()" class="primary-button">Neu laden</button>
+        </div>
+    `;
+}

@@ -8,7 +8,7 @@ let fetchLimit = 1000;
 let renderLimit = 10;
 let globalStartIndex = 0;
 
-const API_URL = "https://pokeapi.co/api/v2/pokemon/";
+const API_URL = "https://pokeapi.co/api/v2/";
 
 window.addEventListener('keydown', function(event) {
   if (pokemonCardDialog.open) {
@@ -24,6 +24,7 @@ pokemonCardDialog.addEventListener('click', function(event) {
 });
 
 async function init() {
+    dex.innerHTML = "";
     await fetchAllSourcesFromRemote(fetchLimit);
     await renderCards(globalStartIndex, renderLimit);
     openPokemonCardDialog(1);
@@ -108,7 +109,7 @@ function searchPokemon() {
 }
 
 async function openPokemonCardDialog(id) {
-    const pokemon = await fetchSinglePokemonFromRemote(API_URL+id);
+    const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+id);
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
