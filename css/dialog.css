@@ -145,11 +145,11 @@
   background-color: rgba(201, 201, 201, 0.5);
 }
 
-#main-stats, #battle-stats, #evochain {
+#main-stats, #battle-stats, #evo-chain {
     display: none;
 }
 
-#main-stats.active, #battle-stats.active, #evochain.active {
+#main-stats.active, #battle-stats.active, #evo-chain.active {
     display: flex;
 }
 
