@@ -5,8 +5,10 @@ async function fetchAllSourcesFromRemote(limit) {
     try {
         let response = await fetch(remoteUrl+`pokemon/?limit=${limit}&offset=0`);
         pokemons = await response.json();
+        fetchError = false;
     } catch (error) {
         showFetchError(error);
+        fetchError = true;
     }
 }
 

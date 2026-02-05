@@ -3,10 +3,12 @@ const searchBar = document.getElementById("search-input");
 const searchCategory = document.getElementById("search-category");
 const dialogSection = document.getElementById("dialog-section");
 const pokemonCardDialog = document.getElementById("pokemon-card-complete");
+const loadMoreBtnsSection = document.getElementById("load-more-btns");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
 let globalStartIndex = 0;
+let fetchError = false;
 
 const API_URL = "https://pokeapi.co/api/v2/";
 
@@ -26,6 +28,11 @@ pokemonCardDialog.addEventListener('click', function(event) {
 async function init() {
     dex.innerHTML = "";
     await fetchAllSourcesFromRemote(fetchLimit);
+    if (fetchError) {
+        loadMoreBtnsSection.style.display = "none";
+    }else {
+        loadMoreBtnsSection.style.display = "flex";
+    }
     await renderCards(globalStartIndex, renderLimit);
     openPokemonCardDialog(1);
 }
