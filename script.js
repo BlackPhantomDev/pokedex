@@ -34,7 +34,7 @@ async function init() {
         loadMoreBtnsSection.style.display = "flex";
     }
     await renderCards(globalStartIndex, renderLimit);
-    openPokemonCardDialog(1);
+    await openPokemonCardDialog(1);
 }
     
 async function renderCards(startIndex, count) {
@@ -120,7 +120,7 @@ async function openPokemonCardDialog(id) {
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
-    pokemonCardDialog.innerHTML = getBigPokemonCardTemplate(pokemon);
+    pokemonCardDialog.innerHTML = await getBigPokemonCardTemplate(pokemon);
     pokemonCardDialog.showModal();
     switchStat(0);
 }
@@ -179,4 +179,25 @@ function showStat(statIndex) {
     if (target) {
         target.classList.add('active');
     }
+}
+
+async function getEvoChainData(id) {
+    const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+id);
+    const speciesResponse = await fetch(pokemon.species.url);
+    const speciesData = await speciesResponse.json();
+    const evoResponse = await fetch(speciesData.evolution_chain.url);
+    const evoData = await evoResponse.json();
+    
+    return evoData.chain;
+}
+
+async function getEvoChain(id) {
+  let chain = await getEvoChainData(id);
+  const evoList = [];
+  while (chain) {
+    evoList.push(chain.species.name);
+    chain = chain.evolves_to[0] ?? null;
+  }
+  
+  return evoList;
 }

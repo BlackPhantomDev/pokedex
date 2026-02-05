@@ -51,11 +51,12 @@ function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
     `;
 }
 
-function getBigPokemonCardTemplate(pokemon) {
+async function getBigPokemonCardTemplate(pokemon) {
+    let evoHtml = await getEvoChain(pokemon.id);
     return `
         <article class="inner-dialog">
             <header id="dialog-header">
-                <h2 id="dialog-title">#${("0000" + pokemon.id).slice(-4)} ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                <h2 id="dialog-title">#${("0000" + pokemon.id).slice(-4)} ${capWords(pokemon.name)}</h2>
                 <button onclick="closePokemonCardDialog()" aria-label="Dialog schliessen" href="#" class="close-btn navigation-btn" type="button" tabindex="0">
                     <img src="./assets/icons/close.png" alt="Schliessen Button"/>
                 </button>
@@ -65,7 +66,7 @@ function getBigPokemonCardTemplate(pokemon) {
                 <figure>
                     <img id="pokemon-preview"
                         src="${pokemon.sprites["other"]["official-artwork"]["front_default"]}"
-                        alt="Pokemon: ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}">
+                        alt="Pokemon: ${capWords(pokemon.name)}">
                     <figcaption id="stats-container">
                         <div id="stats-menue">
                             <span onclick="switchStat(0)">Main</span>
@@ -77,7 +78,7 @@ function getBigPokemonCardTemplate(pokemon) {
                             <table>
                                 <tr><th>Height</th><td>${pokemon.height}</td></tr>
                                 <tr><th>Weight</th><td>${pokemon.weight}</td></tr>
-                                <tr><th>Base‑Experience</th><td>${pokemon.base_experience} pts.</td></tr>
+                                <tr><th>Base-Experience</th><td>${pokemon.base_experience} pts.</td></tr>
                                 <tr><th>Abilities</th><td>${getAllPokemonAbilities(pokemon.abilities).join(", ")}</td></tr>
                             </table>
                             </div>
@@ -93,7 +94,7 @@ function getBigPokemonCardTemplate(pokemon) {
                             </table>
                             </div>
                             <div id="evo-chain">
-                            
+                                ${evoHtml}
                             </div>
                         </div>
                     </figcaption>
@@ -108,6 +109,7 @@ function getErrorMessageTemplate(error) {
         <div class="error-card" id="errorCard">
             <h2>Fehler beim Laden</h2>
             <p>Die Daten von der PokéAPI konnten nicht abgerufen werden.</p>
+            <p>Fehlermeldung: ${error}</p>
             <button onclick="init()" class="primary-button">Neu laden</button>
         </div>
     `;
