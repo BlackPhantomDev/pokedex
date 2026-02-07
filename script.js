@@ -4,6 +4,7 @@ const searchCategory = document.getElementById("search-category");
 const dialogSection = document.getElementById("dialog-section");
 const pokemonCardDialog = document.getElementById("pokemon-card-complete");
 const loadMoreBtnsSection = document.getElementById("load-more-btns");
+const loadingScreen = document.getElementById("loading-screen");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -25,7 +26,11 @@ pokemonCardDialog.addEventListener('click', function(event) {
     if (event.target.closest('.inner-dialog')) event.stopPropagation();
 });
 
+loadingScreen.addEventListener('click', e => e.stopPropagation());
+loadingScreen.addEventListener('cancel', e => e.preventDefault());
+
 async function init() {
+    openLoadingScreen();
     dex.innerHTML = "";
     await fetchAllSourcesFromRemote(fetchLimit);
     if (fetchError) {
@@ -47,6 +52,7 @@ async function renderCards(startIndex, count) {
         }
         setCardInfos(pokemon, typesString);
     }
+    closeLoadingScreen();
 }
 
 function setCardInfos(pokemon, typesString) {
@@ -211,4 +217,14 @@ async function renderEvoChain(id) {
     }
     
     return evoChainHtml.outerHTML;
+}
+
+function openLoadingScreen() {
+    dialogSection.style.display = 'block';
+    loadingScreen.showModal();
+}
+
+function closeLoadingScreen() {
+    dialogSection.style.display = 'none';
+    if (loadingScreen.open) loadingScreen.close();
 }
