@@ -52,7 +52,6 @@ function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
 }
 
 async function getBigPokemonCardTemplate(pokemon) {
-    let evoHtml = await getEvoChain(pokemon.id);
     return `
         <article class="inner-dialog">
             <header id="dialog-header">
@@ -94,7 +93,7 @@ async function getBigPokemonCardTemplate(pokemon) {
                             </table>
                             </div>
                             <div id="evo-chain">
-                                ${evoHtml}
+                                ${await renderEvoChain(pokemon.id)}
                             </div>
                         </div>
                     </figcaption>
@@ -111,6 +110,15 @@ function getErrorMessageTemplate(error) {
             <p>Die Daten von der PokéAPI konnten nicht abgerufen werden.</p>
             <p>Fehlermeldung: ${error}</p>
             <button onclick="init()" class="primary-button">Neu laden</button>
+        </div>
+    `;
+}
+
+function getEvoCardTemplate(pokemon) {
+    return `
+        <div class="evo-chain-card">
+            <div class="evo-image"><img src="${pokemon.sprites["other"]["official-artwork"]["front_default"]}" alt="${capWords(pokemon.name)}"></div>
+            <div class="evo-name">${capWords(pokemon.name)}</div>
         </div>
     `;
 }

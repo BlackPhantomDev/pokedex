@@ -34,7 +34,6 @@ async function init() {
         loadMoreBtnsSection.style.display = "flex";
     }
     await renderCards(globalStartIndex, renderLimit);
-    await openPokemonCardDialog(1);
 }
     
 async function renderCards(startIndex, count) {
@@ -200,4 +199,16 @@ async function getEvoChain(id) {
   }
   
   return evoList;
+}
+
+async function renderEvoChain(id) {
+    const evoChain = await getEvoChain(id);
+    let evoChainHtml = document.createElement("div");  
+    evoChainHtml.className = "evo-chain-rendered";
+    for (let i = 0; i < evoChain.length; i++) {
+        const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+evoChain[i]);
+        evoChainHtml.innerHTML += getEvoCardTemplate(pokemon);
+    }
+    
+    return evoChainHtml.outerHTML;
 }
