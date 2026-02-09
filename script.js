@@ -12,7 +12,7 @@ let renderLimit = 10;
 let globalStartIndex = 0;
 let fetchError = false;
 
-const API_URL = "https://pokeapi.co/api/v2/";
+const BASE_API_URL = "https://pokeapi.co/api/v2/";
 
 window.addEventListener('keydown', function(event) {
   if (pokemonCardDialog.open) {
@@ -123,7 +123,7 @@ function searchPokemon() {
 }
 
 async function openPokemonCardDialog(id) {
-    const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+id);
+    const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+id);
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
@@ -189,7 +189,7 @@ function showStat(statIndex) {
 }
 
 async function getEvoChainData(id) {
-    const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+id);
+    const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+id);
     const speciesResponse = await fetch(pokemon.species.url);
     const speciesData = await speciesResponse.json();
     const evoResponse = await fetch(speciesData.evolution_chain.url);
@@ -214,7 +214,7 @@ async function renderEvoChain(id) {
     let evoChainHtml = document.createElement("div");  
     evoChainHtml.className = "evo-chain-rendered";
     for (let i = 0; i < evoChain.length; i++) {
-        const pokemon = await fetchSinglePokemonFromRemote(API_URL+"pokemon/"+evoChain[i]);
+        const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+evoChain[i]);
         evoChainHtml.innerHTML += getEvoCardTemplate(pokemon);
     }
     
