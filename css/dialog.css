@@ -45,6 +45,11 @@
 #loading-screen {
     display: flex;
 }
+
+#loading-screen::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 #inner-loading-screen {
     position: fixed;
     display: flex;

@@ -5,6 +5,7 @@ const dialogSection = document.getElementById("dialog-section");
 const pokemonCardDialog = document.getElementById("pokemon-card-complete");
 const loadMoreBtnsSection = document.getElementById("load-more-btns");
 const loadingScreen = document.getElementById("loading-screen");
+const body = document.getElementById("body");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -103,6 +104,7 @@ function typeColor(pokemon) {
 }
 
 async function loadMoreCards() {
+    openLoadingScreen()
     globalStartIndex = globalStartIndex + 10;
     renderCards(globalStartIndex, 10);
 }
@@ -220,6 +222,7 @@ async function renderEvoChain(id) {
 }
 
 function openLoadingScreen() {
+    body.style.overflow = "hidden";
     dialogSection.style.display = 'block';
     loadingScreen.showModal();
 }
@@ -227,4 +230,5 @@ function openLoadingScreen() {
 function closeLoadingScreen() {
     dialogSection.style.display = 'none';
     if (loadingScreen.open) loadingScreen.close();
+    body.style.overflowY = "scroll";
 }
