@@ -80,12 +80,28 @@ main {
     background-color: #0056b3;
 }
 
-#search-error {
+.search-error {
+    color: red;
+    font-size: 22px;
+    font-family: CreatoDisplay Bold;
+}
+
+#not-enough-letters {
     display: none;
 }
-#search-error.visible {
+#not-enough-letters.visible {
+    display: block;
+}
+
+#search-result-error {
+    display: none;
+}
+
+#search-result-error.visible {
     display: flex;
-    color: red;
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
 }
 
 #search-amount {

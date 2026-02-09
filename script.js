@@ -7,8 +7,9 @@ const loadMoreBtnsSection = document.getElementById("load-more-btns");
 const loadingScreen = document.getElementById("loading-screen");
 const body = document.getElementById("body");
 const searchAmount = document.getElementById("search-amount");
-const searchError = document.getElementById('search-error');
+const notEnoughLetters = document.getElementById("not-enough-letters");
 const searchResetBtn = document.getElementById('search-reset-btn');
+const searchError = document.getElementById("search-result-error");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -117,7 +118,7 @@ async function loadMoreCards() {
 async function searchPokemon() {
     maxElementsSearch = searchAmount.value;
     if (searchBar.value.length >= 3) {
-        searchError.classList.remove('visible');
+        notEnoughLetters.classList.remove('visible');
         openLoadingScreen();
         if (searchBar.value) {
             const query = searchBar.value;
@@ -126,7 +127,7 @@ async function searchPokemon() {
             loadMoreBtnsSection.style.display = "none";
         } 
     }else {
-        searchError.classList.add('visible');
+        notEnoughLetters.classList.add('visible');
     }
 }
 
@@ -189,10 +190,14 @@ function setMaxElementsSearchValue(value) {
     if (maxElementsSearch > value) {
         maxElementsSearch = value;
     }
+    if (value == 0) {
+        searchError.classList.add("visible");
+    }
 }
 
 function resetSearch() {
     searchResetBtn.style.display = "none";
+    searchError.classList.remove("visible");
     searchBar.value = null;
     init();
 }
