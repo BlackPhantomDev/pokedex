@@ -1,9 +1,8 @@
-const remoteUrl = "https://pokeapi.co/api/v2/";
 let pokemons = [];
 
 async function fetchAllSourcesFromRemote(limit) {
     try {
-        let response = await fetch(remoteUrl+`pokemon/?limit=${limit}&offset=0`);
+        let response = await fetch(BASE_API_URL+`pokemon/?limit=${limit}&offset=0`);
         pokemons = await response.json();
         fetchError = false;
     } catch (error) {
