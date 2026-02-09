@@ -2,15 +2,15 @@
 .type-electric   { background-color: #F8D030; color: rgba(0, 0, 0, 0.75); }
 .type-fairy      { background-color: #EE99AC; color: rgba(0, 0, 0, 0.75); }
 .type-ice        { background-color: #98D8D8; color: rgba(0, 0, 0, 0.75); }
-.type-bug        { background-color: #A8B820; color: rgba(0, 0, 0, 0.75); }
+.type-bug        { background-color: #c3d422; color: rgba(0, 0, 0, 0.75); }
 .type-normal     { background-color: #A8A878; color: rgba(0, 0, 0, 0.75); }
 .type-steel      { background-color: #B8B8D0; color: rgba(0, 0, 0, 0.75); }
 
 /* Alle anderen Typen behalten weiße Schrift */
-.type-fire       { background-color: #F08030; color: white;}
-.type-water      { background-color: #6890F0; color: white;}
+.type-fire       { background-color: #f05a30; color: white;}
+.type-water      { background-color: #4075f0; color: white;}
 .type-grass      { background-color: #78C850; color: white;}
-.type-fighting   { background-color: #C03028; color: white;}
+.type-fighting   { background-color: #eb5a35; color: white;}
 .type-poison     { background-color: #A040A0; color: white;}
 .type-ground     { background-color: #E0C068; color: white;}
 .type-flying     { background-color: #A890F0; color: white;}

@@ -45,7 +45,7 @@ function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
                 </div>
             </div>
             <footer class="card-footer" aria-label="Typ und Lebenspunkte">
-                <p>Type: ${types} | HP: ${stats[0]["base_stat"]}</p>
+                <p>Type: ${types}</p>
             </footer>
         </article>
     `;
