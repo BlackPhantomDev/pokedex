@@ -81,6 +81,18 @@ main {
     background-color: #0056b3;
 }
 
+#search-error {
+    display: none;
+}
+#search-error.visible {
+    display: flex;
+    color: red;
+}
+
+#search-reset-btn {
+    display: none;
+}
+
 .error-card {
     background: #fff;
     text-align: center;
