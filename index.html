@@ -26,12 +26,13 @@
             <section class="search-section">
                 <h4>Den PokéDex durchsuchen:</h4>
                 <div class="search-container">
+                    <input type="number" name="amount" id="search-amount" value="5" min="1"/>
                     <select name="categroy" id="search-category">
                         <option value="name">Name</option>
                         <option value="type">Type</option>
                     </select>
                     <div id="bar">
-                        <input type="text" class="search-input" id="search-input" placeholder="z.B. Pikachu...">
+                        <input type="text" class="search-input" id="search-input" placeholder="Pikachu, Fire...">
                         <button class="search-button primary-button" onclick="searchPokemon()">Suchen</button>
                     </div>
                 </div>

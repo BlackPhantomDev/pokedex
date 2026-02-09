@@ -6,6 +6,7 @@ const pokemonCardDialog = document.getElementById("pokemon-card-complete");
 const loadMoreBtnsSection = document.getElementById("load-more-btns");
 const loadingScreen = document.getElementById("loading-screen");
 const body = document.getElementById("body");
+const searchAmount = document.getElementById("search-amount");
 const searchError = document.getElementById('search-error');
 const searchResetBtn = document.getElementById('search-reset-btn');
 
@@ -13,6 +14,7 @@ let fetchLimit = 1000;
 let renderLimit = 10;
 let globalStartIndex = 0;
 let fetchError = false;
+let maxElementsSearch;
 
 const BASE_API_URL = "https://pokeapi.co/api/v2/";
 
@@ -113,6 +115,7 @@ async function loadMoreCards() {
 }
 
 async function searchPokemon() {
+    maxElementsSearch = searchAmount.value;
     if (searchBar.value.length >= 3) {
         searchError.classList.remove('visible');
         openLoadingScreen();
@@ -168,7 +171,8 @@ async function getAllPokemonUrlsForTypes(filtered) {
 
 async function renderSearchedPokemons(filtered) {
     dex.innerHTML = "";
-    for (let index = 0; index < filtered.length; index++) {
+    setMaxElementsSearchValue(filtered.length);
+    for (let index = 0; index < maxElementsSearch; index++) {
         let currentPokemonInfos = filtered[index];        
         const pokemon = await fetchSinglePokemonFromRemote(currentPokemonInfos);        
         let typesString = "";
@@ -179,6 +183,12 @@ async function renderSearchedPokemons(filtered) {
     }
     closeLoadingScreen();
     searchResetBtn.style.display = "block";
+}
+
+function setMaxElementsSearchValue(value) {
+    if (maxElementsSearch > value) {
+        maxElementsSearch = value;
+    }
 }
 
 function resetSearch() {
