@@ -55,7 +55,7 @@ async function getBigPokemonCardTemplate(pokemon) {
     return `
         <article class="inner-dialog">
             <header id="dialog-header">
-                <h2 id="dialog-title">#${("0000" + pokemon.id).slice(-4)} ${capWords(pokemon.name)}</h2>
+                <h2 id="dialog-title">#${(pokemon.id)} ${capWords(pokemon.name)}</h2>
                 <button onclick="closePokemonCardDialog()" aria-label="Dialog schliessen" href="#" class="close-btn navigation-btn" type="button" tabindex="0">
                     <img src="./assets/icons/close.png" alt="Schliessen Button"/>
                 </button>
