@@ -13,8 +13,16 @@ async function fetchAllSourcesFromRemote(limit) {
 }
 
 async function fetchSinglePokemonFromRemote(pokemonUrl) {
-    let response = await fetch(pokemonUrl);
-    return await response.json();
+    try {
+        console.log(pokemonUrl);
+        
+        let response = await fetch(pokemonUrl);
+        fetchError = false;
+        return await response.json();
+    } catch (error) {
+        showFetchError(error);
+        fetchError = true;
+    }
 }
 
 async function fetchAllTypesFromRemote() {
@@ -30,10 +38,17 @@ async function fetchAllTypesFromRemote() {
 }
 
 async function fetchSingleTypeFromRemote(typeUrl) {
-    let response = await fetch(typeUrl);
-    return await response.json();
+    try {
+        let response = await fetch(typeUrl);
+        fetchError = false;
+        return await response.json();
+    } catch (error) {
+        showFetchError(error);
+        fetchError = true;
+    }
 }
 
 function showFetchError(error) {
     dex.innerHTML = getErrorMessageTemplate(error);
+    closeLoadingScreen();
 }
