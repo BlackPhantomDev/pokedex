@@ -36,28 +36,43 @@ loadingScreen.addEventListener('click', e => e.stopPropagation());
 loadingScreen.addEventListener('cancel', e => e.preventDefault());
 
 async function init() {
+    setSearchAmountSelection();
     openLoadingScreen();
     dex.innerHTML = "";
     await fetchAllSourcesFromRemote(fetchLimit);
+    await renderCards(globalStartIndex, renderLimit);
+    await fetchAllTypesFromRemote();
     if (fetchError) {
         loadMoreBtnsSection.style.display = "none";
     }else {
         loadMoreBtnsSection.style.display = "flex";
     }
-    await renderCards(globalStartIndex, renderLimit);
-    await fetchAllTypesFromRemote();
+}
+
+function setSearchAmountSelection() {
+    for (let i = 1; i <= 5; i++) {
+        const opt = document.createElement('option')
+        opt.value = i*10;
+        opt.textContent = i*10;
+        searchAmount.appendChild(opt)
+    }
 }
     
 async function renderCards(startIndex, count) {
     const endIndex = startIndex + count;
     for (let index = startIndex; index < endIndex; index++) {
         let currentPokemonInfos = pokemons.results[index];
-        const pokemon = await fetchSinglePokemonFromRemote(currentPokemonInfos.url);
-        let typesString = "";
-        for (let i = 0; i < pokemon.types.length; i++) {
-            typesString = generateTypeString(i, pokemon, typesString);
+        try {
+            const pokemon = await fetchSinglePokemonFromRemote(currentPokemonInfos.url);
+            let typesString = "";
+            for (let i = 0; i < pokemon.types.length; i++) {
+                typesString = generateTypeString(i, pokemon, typesString);
+            }
+            setCardInfos(pokemon, typesString);
+        } catch (error) {
+            showFetchError(error);
+            fetchError = true;
         }
-        setCardInfos(pokemon, typesString);
     }
     closeLoadingScreen();
 }
@@ -289,8 +304,8 @@ async function getEvoChain(id) {
   return evoList;
 }
 
-async function renderEvoChain(id) {
-    const evoChain = await getEvoChain(id);
+async function renderEvoChain(id) {    
+    const evoChain = await getEvoChain(id);    
     let evoChainHtml = document.createElement("div");  
     evoChainHtml.className = "evo-chain-rendered";
     for (let i = 0; i < evoChain.length; i++) {
