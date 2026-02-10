@@ -14,8 +14,6 @@ async function fetchAllSourcesFromRemote(limit) {
 
 async function fetchSinglePokemonFromRemote(pokemonUrl) {
     try {
-        console.log(pokemonUrl);
-        
         let response = await fetch(pokemonUrl);
         fetchError = false;
         return await response.json();
