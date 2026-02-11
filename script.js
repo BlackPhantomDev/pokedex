@@ -1,15 +1,17 @@
 const dex = document.getElementById("pokemon-cards");
-const searchBar = document.getElementById("search-input");
+const toggleSearchSectionBtn = document.getElementById("toggle-search-section-btn");
+const searchSection = document.getElementById("search-section");
+const searchAmount = document.getElementById("search-amount");
 const searchCategory = document.getElementById("search-category");
+const searchBar = document.getElementById("search-input");
+const notEnoughLetters = document.getElementById("not-enough-letters");
+const searchResetBtn = document.getElementById('search-reset-btn');
+const searchError = document.getElementById("search-result-error");
 const dialogSection = document.getElementById("dialog-section");
 const pokemonCardDialog = document.getElementById("pokemon-card-complete");
 const loadMoreBtnsSection = document.getElementById("load-more-btns");
 const loadingScreen = document.getElementById("loading-screen");
 const body = document.getElementById("body");
-const searchAmount = document.getElementById("search-amount");
-const notEnoughLetters = document.getElementById("not-enough-letters");
-const searchResetBtn = document.getElementById('search-reset-btn');
-const searchError = document.getElementById("search-result-error");
 
 let fetchLimit = 1000;
 let renderLimit = 10;
@@ -46,6 +48,16 @@ async function init() {
         loadMoreBtnsSection.style.display = "none";
     }else {
         loadMoreBtnsSection.style.display = "flex";
+    }
+}
+
+function toggleSearchSection() {
+    if (!searchSection.classList.contains('opened')) {
+        searchSection.classList.add('opened');
+        toggleSearchSectionBtn.innerText = "Suche schliessen";
+    } else {
+        searchSection.classList.remove('opened');
+        toggleSearchSectionBtn.innerText = "Suche öffnen";
     }
 }
 
