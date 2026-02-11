@@ -230,6 +230,7 @@ function resetSearch() {
 }
 
 async function openPokemonCardDialog(id) {
+    body.style.overflow = "hidden";
     const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+id);
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
@@ -240,6 +241,7 @@ async function openPokemonCardDialog(id) {
 }
 
 function closePokemonCardDialog() {
+    body.style.overflowY = "scroll";
     dialogSection.style.display = 'none';
     pokemonCardDialog.classList.remove("opened");
     pokemonCardDialog.innerHTML = "";
