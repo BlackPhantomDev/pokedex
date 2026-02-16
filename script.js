@@ -80,7 +80,7 @@ async function renderCards(startIndex, count) {
             for (let i = 0; i < pokemon.types.length; i++) {
                 typesString = generateTypeString(i, pokemon, typesString);
             }
-            setCardInfos(pokemon, typesString);
+            setCardInfos(pokemon, typesString, false);
         } catch (error) {
             showFetchError(error);
             fetchError = true;
@@ -89,14 +89,15 @@ async function renderCards(startIndex, count) {
     closeLoadingScreen();
 }
 
-function setCardInfos(pokemon, typesString) {
+function setCardInfos(pokemon, typesString, isSearched) {
     dex.innerHTML += getSmallPokemonCardTemplate(
         pokemon.id,
         pokemon.name.toUpperCase(),
         pokemon.stats,
         typesString,
         pokemon.sprites["other"]["official-artwork"]["front_default"],
-        typeColor(pokemon)
+        typeColor(pokemon),
+        isSearched
     );
 }
 
@@ -207,7 +208,7 @@ async function renderSearchedPokemons(filtered) {
         for (let i = 0; i < pokemon.types.length; i++) {
             typesString = generateTypeString(i, pokemon, typesString);
         }
-        setCardInfos(pokemon, typesString);
+        setCardInfos(pokemon, typesString, true);
     }
     closeLoadingScreen();
     searchResetBtn.style.display = "block";
@@ -229,13 +230,13 @@ function resetSearch() {
     init();
 }
 
-async function openPokemonCardDialog(id) {
+async function openPokemonCardDialog(id, isSearched) {
     body.style.overflow = "hidden";
     const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+id);
     dialogSection.style.display = 'block';
     pokemonCardDialog.classList.add("opened");
     pokemonCardDialog.innerHTML = "";
-    pokemonCardDialog.innerHTML = await getBigPokemonCardTemplate(pokemon);
+    pokemonCardDialog.innerHTML = await getBigPokemonCardTemplate(pokemon, isSearched);
     pokemonCardDialog.showModal();
     switchStat(0);
 }
@@ -340,4 +341,52 @@ function closeLoadingScreen() {
     dialogSection.style.display = 'none';
     if (loadingScreen.open) loadingScreen.close();
     body.style.overflowY = "scroll";
+}
+
+async function previousPokemon(id, isSearched) {
+    if (id > 1 && !isSearched) {
+        pokemonCardDialog.classList.remove("opened");
+        const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+(id - 1));
+        pokemonCardDialog.innerHTML = "";
+        pokemonCardDialog.innerHTML = await getBigPokemonCardTemplate(pokemon, false);
+        switchStat(0);
+        pokemonCardDialog.classList.add("opened");
+    } else {
+        if (isSearched) {
+            showMessage('In der Suche kann nicht zurück gegangen werden\n');       
+        } else {
+            showMessage('Das ist das erste Pokemon. Du kannst nicht weiter zurück!\n');       
+        }
+    }
+}
+
+async function nextPokemon(id, isSearched) {
+    if (id < (globalStartIndex + renderLimit) && !isSearched) {
+        pokemonCardDialog.classList.remove("opened");
+        const pokemon = await fetchSinglePokemonFromRemote(BASE_API_URL+"pokemon/"+(id + 1));
+        pokemonCardDialog.innerHTML = "";
+        pokemonCardDialog.innerHTML = await getBigPokemonCardTemplate(pokemon, false);
+        switchStat(0);
+        pokemonCardDialog.classList.add("opened");
+    } else {
+        if (isSearched) {
+            showMessage('In der Suche kann nicht vor gegangen werden\n');       
+        } else {
+            showMessage('Das ist das letzte gerenderte Pokemon. Du kannst nicht weiter vor!\n');
+        }
+    }
+}
+
+function showMessage(message) {
+    const messageElement = document.getElementById("message-box");
+    messageElement.classList.add('visible');
+    const msgNode = document.createElement('p');
+    msgNode.textContent = message; 
+    messageElement.appendChild(msgNode); 
+    setTimeout(() => {
+        msgNode.remove();
+        if (messageElement.children.length === 0) {
+            messageElement.classList.remove('visible');
+        }
+    }, 3000);   
 }

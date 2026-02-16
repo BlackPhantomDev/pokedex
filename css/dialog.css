@@ -112,9 +112,37 @@
     width: 44px;
     height: 44px;
 }
-.navigation-btn:focus, .navigation-btn:hover {
+
+#figure-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+#card-nav {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.dialog-btn {
+    all: unset;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.dialog-btn:focus{
     box-shadow: white 0 0 20px; 
-    transition: all .1s ease-in;
+}
+.dialog-btn img {
+    height: 60px;
+    width: auto;
 }
 
 #dialog-content {
@@ -259,12 +287,20 @@
         padding: 4px 8px;
         font-size: 14px;
     }
-
+    #pokemon-preview {
+        width: 250px;
+    }
 }
 
 @media (max-width: 470px) {
     .inner-dialog h2 {
         font-size: 24px;
+    }
+    #card-nav {
+        position: relative;
+        justify-content: center;
+        gap: 78px;
+        padding: 0;
     }
 }
 

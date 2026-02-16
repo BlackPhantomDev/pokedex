@@ -1,6 +1,6 @@
-function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
+function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor, isSearched) {
     return `
-        <article class="pokemon-card" aria-labelledby="pokemon-card-name-${id}" role="article" onclick="openPokemonCardDialog(${id})">
+        <article class="pokemon-card" aria-labelledby="pokemon-card-name-${id}" role="article" onclick="openPokemonCardDialog(${id}, ${isSearched})">
             <header class="card-header ${headerColor}" id="pokemon-card-name-${id}">
                 ${name}
             </header>
@@ -51,7 +51,7 @@ function getSmallPokemonCardTemplate(id, name, stats, types, img, headerColor) {
     `;
 }
 
-async function getBigPokemonCardTemplate(pokemon) {
+async function getBigPokemonCardTemplate(pokemon, isSearched) {        
     return `
         <article class="inner-dialog">
             <header id="dialog-header">
@@ -63,9 +63,15 @@ async function getBigPokemonCardTemplate(pokemon) {
 
             <section id="dialog-content">
                 <figure>
-                    <img id="pokemon-preview"
-                        src="${pokemon.sprites["other"]["official-artwork"]["front_default"]}"
-                        alt="Pokemon: ${capWords(pokemon.name)}">
+                    <div id="figure-header">
+                        <img id="pokemon-preview"
+                            src="${pokemon.sprites["other"]["official-artwork"]["front_default"]}"
+                            alt="Pokemon: ${capWords(pokemon.name)}">
+                        <div id="card-nav">
+                            <button id="previous" class="dialog-btn navigation-btn" onclick="previousPokemon(${pokemon.id}, ${isSearched})"><img src="./assets/icons/arrow-left.svg" alt="Button vorheriges Bild" /></button>
+                            <button id="next" class="dialog-btn navigation-btn" onclick="nextPokemon(${pokemon.id}, ${isSearched})"><img src="./assets/icons/arrow-right.svg" alt="Button naechstes Bild" /></button>
+                        </div>
+                    </div>
                     <figcaption id="stats-container">
                         <div id="stats-menue">
                             <span onclick="switchStat(0)">Main</span>
@@ -100,6 +106,8 @@ async function getBigPokemonCardTemplate(pokemon) {
                 </figure>
             </section>
         </article>
+        <span id="message-box">
+        </span>
     `;
 }
 
