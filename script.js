@@ -38,6 +38,7 @@ loadingScreen.addEventListener('click', e => e.stopPropagation());
 loadingScreen.addEventListener('cancel', e => e.preventDefault());
 
 async function init() {
+    globalStartIndex = 0;
     setSearchAmountSelection();
     openLoadingScreen();
     dex.innerHTML = "";
@@ -62,11 +63,13 @@ function toggleSearchSection() {
 }
 
 function setSearchAmountSelection() {
-    for (let i = 1; i <= 5; i++) {
-        const opt = document.createElement('option')
-        opt.value = i*10;
-        opt.textContent = i*10;
-        searchAmount.appendChild(opt)
+    if (searchAmount.childElementCount < 5) {
+        for (let i = 1; i <= 5; i++) {
+            const opt = document.createElement('option')
+            opt.value = i*10;
+            opt.textContent = i*10;
+            searchAmount.appendChild(opt)
+        }
     }
 }
     
@@ -177,7 +180,7 @@ async function filterSearchedPokemons(query, queryFilter) {
     }
 }
 
-async function getAllPokemonUrlsForNames(filtered) {
+function getAllPokemonUrlsForNames(filtered) {
     const allPokemonUrls = [];
     for (let i = 0; i < filtered.length; i++) {
         allPokemonUrls.push(filtered[i].url);
