@@ -54,10 +54,10 @@ async function init() {
 function toggleSearchSection() {
     if (!searchSection.classList.contains('opened')) {
         searchSection.classList.add('opened');
-        toggleSearchSectionBtn.innerText = "Suche schliessen";
+        toggleSearchSectionBtn.innerText = "Close search";
     } else {
         searchSection.classList.remove('opened');
-        toggleSearchSectionBtn.innerText = "Suche öffnen";
+        toggleSearchSectionBtn.innerText = "Open search";
     }
 }
 

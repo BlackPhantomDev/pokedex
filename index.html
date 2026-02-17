@@ -20,14 +20,14 @@
                     <img src="./assets/img/logo.png" alt="Logo">
                 </a>
                 <button onclick="toggleSearchSection()" class="primary-button" id="toggle-search-section-btn">
-                    Suche &ouml;ffnen
+                    Open search
                 </button>
             </nav>
         </header>
 
         <main>
             <section id="search-section">
-                <h4>Den PokéDex durchsuchen:</h4>
+                <h4>Searching the PokéDex:</h4>
                 <div class="search-container">
                     <div id="search-filters">
                         <select name="amount" id="search-amount" >
@@ -40,12 +40,12 @@
                     </div>
                     <div id="bar">
                         <input type="text" class="search-input" id="search-input" placeholder="Pikachu, Fire...">
-                        <button class="search-button primary-button" onclick="searchPokemon()">Suchen</button>
+                        <button class="search-button primary-button" onclick="searchPokemon()">Search</button>
                     </div>
                 </div>
-                <button class="primary-button" id="search-reset-btn" onclick="resetSearch()">Zur&uuml;cksetzen</button>
-                <span class="search-error" id="not-enough-letters">Mind. 3 Zeichen erforderlich!</span>
-                <div class="search-error" id="search-result-error"><span>Leider kein Ergebnis... </span>
+                <button class="primary-button" id="search-reset-btn" onclick="resetSearch()">Reset</button>
+                <span class="search-error" id="not-enough-letters">At least 3 letters!</span>
+                <div class="search-error" id="search-result-error"><span>No result... </span>
                     <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdm5peTc0MHZpdDgwYzdtc2hvbHhtcGU1c2ptbzhrYnM4dW14NWZmMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LkJCuaohj4CLm/giphy.gif" alt="">
                 </div>
             </section>
@@ -55,7 +55,7 @@
             </section>
 
             <section id="load-more-btns">
-                <button onclick="loadMoreCards()" class="primary-button">Weitere Laden</button>
+                <button onclick="loadMoreCards()" class="primary-button">Load more</button>
             </section>
 
         </main>
